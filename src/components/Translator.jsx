@@ -8,7 +8,7 @@ export default function Translator() {
 	const [outputFormat, setOutputFormat] = useState('de');
 	const [translatedText, setTranslatedText] = useState('Translation');
 	const [inputText, setInputText] = useState('');
-	const [languages, setLanguages] = useState([]);
+	// const [languages, setLanguages] = useState([]);
 	const API_KEY = 'b7b3d10ee724b35f72be2d0a260f4dceca0be918';
 
 	const handleReverseLanguage = () => {
@@ -23,47 +23,6 @@ export default function Translator() {
 		setInputText('');
 		setTranslatedText('Translation');
 	}
-
-	useEffect(() => {
-		fetchLanguages();
-	}, []);
-
-	const fetchLanguages = async () => {
-		try {
-			const response = await axios.get(`https://translation.googleapis.com/language/translate/v2/languages?key=${API_KEY}`);
-			setLanguages(response.data.data.languages);
-		} catch (error) {
-			console.error('Error fetching languages', error);
-		}
-	};
-
-	console.log(languages);
-
-	// const API_URL = 'https://translation.googleapis.com/language/translate/v2';
-	// const handleTranslate = async (text, targetLanguage) => {
-	// 	console.log(text, inputFormat, targetLanguage);
-	// 	try {
-	// 		const response = await axios.post(
-	// 			`${API_URL}?key=${API_KEY}`,
-	// 			JSON.stringify({
-	// 				q: text,
-	// 				target: targetLanguage,
-	// 				format: 'text'
-	// 			}),
-	// 			{
-	// 				headers: {
-	// 					'Content-Type': 'application/json'
-	// 				}
-	// 			}
-	// 		);
-
-	// 		const translation = response.data.data.translations[0].translatedText;
-	// 		setTranslatedText(translation);
-	// 	} catch (error) {
-	// 		console.error("Error:", error);
-	// 		alert("Please Try Again! Some Error Occurred.");
-	// 	}
-	// };
 
 	const handleTranslate = async (text, targetLanguage) => {
 		try {
